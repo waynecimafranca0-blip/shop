@@ -1,1 +1,1444 @@
-# shop
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Robux Store</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #252525, #080808 65%);
+    color: white;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 7%;
+
+    background: rgba(10,10,10,.95);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid #292929;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #00e5ff;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #00e5ff;
+}
+
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    padding: 90px 20px 45px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 78px);
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #00e5ff;
+    text-shadow: 0 0 25px rgba(0,229,255,.35);
+}
+
+.hero p {
+    color: #999;
+    font-size: 18px;
+}
+
+
+/* STOCK */
+
+.stock-box {
+    max-width: 900px;
+    margin: 0 auto 45px;
+
+    padding: 20px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: linear-gradient(145deg, #151515, #0d0d0d);
+
+    border: 1px solid #303030;
+    border-radius: 16px;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,.3);
+}
+
+.stock-label {
+    display: block;
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+.stock-box strong {
+    font-size: 25px;
+
+    color: #00e5ff;
+}
+
+.stock-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #00ff9d;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.stock-dot {
+    width: 10px;
+    height: 10px;
+
+    background: #00ff9d;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 12px #00ff9d;
+
+    animation: stockPulse 1.5s infinite;
+}
+
+@keyframes stockPulse {
+    50% {
+        opacity: .4;
+    }
+}
+
+
+/* PRODUCTS */
+
+.products {
+    max-width: 1150px;
+    margin: auto;
+
+    padding: 10px 20px 75px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(245px, 1fr));
+
+    gap: 24px;
+}
+
+.card {
+    overflow: hidden;
+
+    background: linear-gradient(145deg, #1d1d1d, #101010);
+
+    border: 1px solid #303030;
+
+    border-radius: 20px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
+
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+
+    border-color: #00e5ff;
+
+    box-shadow:
+        0 20px 50px rgba(0,229,255,.12);
+}
+
+.card-image {
+    width: 100%;
+    height: 180px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 22px;
+}
+
+.robux {
+    font-size: 28px;
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+.price {
+    color: #00e5ff;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.buy {
+    width: 100%;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: #00e5ff;
+
+    color: #001014;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.buy:hover {
+    background: #68efff;
+
+    transform: scale(1.025);
+}
+
+
+/* VOUCHES */
+
+.vouches {
+    max-width: 1150px;
+
+    margin: 0 auto 70px;
+
+    padding: 0 20px;
+}
+
+.vouch-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.vouch-header h2 {
+    font-size: 32px;
+
+    margin-bottom: 8px;
+}
+
+.vouch-header p {
+    color: #888;
+}
+
+.review-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 18px;
+}
+
+.review {
+    background: linear-gradient(145deg, #181818, #101010);
+
+    border: 1px solid #303030;
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    transition: .25s;
+}
+
+.review:hover {
+    transform: translateY(-5px);
+
+    border-color: #00e5ff;
+}
+
+.review-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #00e5ff;
+
+    color: #001014;
+
+    font-size: 19px;
+
+    font-weight: bold;
+}
+
+.review strong {
+    display: block;
+
+    margin-bottom: 4px;
+}
+
+.stars {
+    color: #ffd700;
+
+    letter-spacing: 2px;
+}
+
+.review p {
+    color: #c7c7c7;
+
+    line-height: 1.5;
+
+    margin-bottom: 13px;
+}
+
+.review small {
+    color: #666;
+
+    font-size: 11px;
+}
+
+
+/* NOTICE */
+
+.notice {
+    max-width: 900px;
+
+    margin: 0 auto 60px;
+
+    padding: 20px;
+
+    background: #111;
+
+    border: 1px solid #2d2d2d;
+
+    border-radius: 15px;
+
+    color: #888;
+
+    text-align: center;
+
+    line-height: 1.5;
+}
+
+
+/* PAYMENT MODAL */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,.84);
+
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.payment-box {
+    width: 100%;
+
+    max-width: 460px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    background: linear-gradient(145deg, #191919, #0e0e0e);
+
+    border: 1px solid #3c3c3c;
+
+    border-radius: 22px;
+
+    box-shadow: 0 25px 80px #000;
+
+    animation: popup .25s ease;
+}
+
+@keyframes popup {
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.85)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.payment-box h2 {
+    font-size: 27px;
+
+    margin-bottom: 9px;
+}
+
+.payment-box > p {
+    color: #999;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* PAYMENT METHODS */
+
+.payment {
+    background: #202020;
+
+    border: 1px solid #333;
+
+    padding: 17px;
+
+    border-radius: 14px;
+
+    margin-bottom: 12px;
+}
+
+.payment strong {
+    display: block;
+
+    font-size: 17px;
+
+    margin-bottom: 6px;
+}
+
+.gcash {
+    color: #4cc9ff;
+}
+
+.paymaya {
+    color: #00ff9d;
+}
+
+.payment-number {
+    font-size: 19px;
+
+    color: white;
+}
+
+.selected {
+    border-color: #00e5ff;
+
+    background: rgba(0,229,255,.06);
+}
+
+
+/* FORM */
+
+.payment-box label {
+    display: block;
+
+    margin-top: 18px;
+
+    margin-bottom: 7px;
+
+    color: #ccc;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.payment-box input {
+    width: 100%;
+
+    padding: 13px;
+
+    background: #0b0b0b;
+
+    color: white;
+
+    border: 1px solid #404040;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: .2s;
+}
+
+.payment-box input:focus {
+    border-color: #00e5ff;
+
+    box-shadow:
+        0 0 12px rgba(0,229,255,.12);
+}
+
+
+/* BUTTONS */
+
+.submit {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #00e5ff;
+
+    color: #001014;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.submit:hover {
+    background: #69efff;
+
+    transform: scale(1.02);
+}
+
+.close {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #303030;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.close:hover {
+    background: #414141;
+}
+
+
+/* STATUS POPUP */
+
+.status-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,.82);
+
+    backdrop-filter: blur(6px);
+
+    animation: fadeIn .2s ease;
+}
+
+.status-box {
+    width: 100%;
+
+    max-width: 400px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: #151515;
+
+    border: 1px solid #333;
+
+    border-radius: 20px;
+
+    box-shadow: 0 25px 80px #000;
+
+    animation: popupIn .25s ease;
+}
+
+.status-box h2 {
+    margin-bottom: 15px;
+}
+
+.status-box p {
+    color: #aaa;
+
+    line-height: 1.6;
+}
+
+.status-box button {
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #00e5ff;
+
+    color: #001014;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.status-box button:hover {
+    background: #6ef0ff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popupIn {
+    from {
+        opacity: 0;
+
+        transform: scale(.85);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+}
+
+
+/* FOOTER */
+
+footer {
+    padding: 30px 20px;
+
+    border-top: 1px solid #222;
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: 13px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    header {
+        padding: 16px 20px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 60px;
+    }
+
+    .payment-box {
+        padding: 22px;
+    }
+
+    .stock-box {
+        margin: 0 20px 35px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        ROBUX<span>STORE</span>
+    </div>
+
+    <nav>
+
+        <a href="#">
+            Home
+        </a>
+
+        <a href="#products">
+            Products
+        </a>
+
+        <a href="#vouches">
+            Vouches
+        </a>
+
+        <a
+            href="#"
+            onclick="showPayment(); return false;"
+        >
+            Payment
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        Get <span>Robux</span>
+    </h1>
+
+    <p>
+        Choose a package and view the available payment methods.
+    </p>
+
+</section>
+
+
+<!-- STOCK -->
+
+<div class="stock-box">
+
+    <div>
+
+        <span class="stock-label">
+            ROBUX STOCK
+        </span>
+
+        <strong>
+            2,000,000 R$
+        </strong>
+
+    </div>
+
+    <div class="stock-status">
+
+        <span class="stock-dot"></span>
+
+        IN STOCK
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<section
+    class="products"
+    id="products"
+>
+
+
+    <!-- 400 -->
+
+    <div class="card">
+
+        <img
+            class="card-image"
+            src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80"
+            alt="Gaming setup"
+        >
+
+        <div class="card-content">
+
+            <div class="robux">
+                400 Robux
+            </div>
+
+            <div class="price">
+                ₱120
+            </div>
+
+            <button
+                class="buy"
+                onclick="selectProduct('400 Robux - ₱120')"
+            >
+                BUY NOW
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- 800 -->
+
+    <div class="card">
+
+        <img
+            class="card-image"
+            src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=900&q=80"
+            alt="Gaming computer"
+        >
+
+        <div class="card-content">
+
+            <div class="robux">
+                800 Robux
+            </div>
+
+            <div class="price">
+                ₱240
+            </div>
+
+            <button
+                class="buy"
+                onclick="selectProduct('800 Robux - ₱240')"
+            >
+                BUY NOW
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- 1700 -->
+
+    <div class="card">
+
+        <img
+            class="card-image"
+            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80"
+            alt="Gaming"
+        >
+
+        <div class="card-content">
+
+            <div class="robux">
+                1,700 Robux
+            </div>
+
+            <div class="price">
+                ₱500
+            </div>
+
+            <button
+                class="buy"
+                onclick="selectProduct('1,700 Robux - ₱500')"
+            >
+                BUY NOW
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- 4500 -->
+
+    <div class="card">
+
+        <img
+            class="card-image"
+            src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80"
+            alt="Gaming console"
+        >
+
+        <div class="card-content">
+
+            <div class="robux">
+                4,500 Robux
+            </div>
+
+            <div class="price">
+                ₱1,200
+            </div>
+
+            <button
+                class="buy"
+                onclick="selectProduct('4,500 Robux - ₱1,200')"
+            >
+                BUY NOW
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- VOUCHES -->
+
+<section
+    class="vouches"
+    id="vouches"
+>
+
+    <div class="vouch-header">
+
+        <h2>
+            ⭐ Customer Vouches
+        </h2>
+
+        <p>
+            Customer reviews
+        </p>
+
+    </div>
+
+
+    <div class="review-grid">
+
+
+        <div class="review">
+
+            <div class="review-top">
+
+                <div class="avatar">
+                    J
+                </div>
+
+                <div>
+
+                    <strong>
+                        Juan
+                    </strong>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                Demo review — replace this with a real customer review.
+            </p>
+
+            <small>
+                Demo testimonial
+            </small>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="review-top">
+
+                <div class="avatar">
+                    M
+                </div>
+
+                <div>
+
+                    <strong>
+                        Mark
+                    </strong>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                Demo review — replace this with a real customer review.
+            </p>
+
+            <small>
+                Demo testimonial
+            </small>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="review-top">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Alex
+                    </strong>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                Demo review — replace this with a real customer review.
+            </p>
+
+            <small>
+                Demo testimonial
+            </small>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="review-top">
+
+                <div class="avatar">
+                    K
+                </div>
+
+                <div>
+
+                    <strong>
+                        Kyle
+                    </strong>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p>
+                Demo review — replace this with a real customer review.
+            </p>
+
+            <small>
+                Demo testimonial
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOTICE -->
+
+<div class="notice">
+
+    ⚠️ Demo storefront only. Make sure your actual
+    payment processing, Robux sales, and delivery system
+    comply with applicable Roblox rules and laws.
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div
+    class="modal"
+    id="paymentModal"
+>
+
+    <div class="payment-box">
+
+        <h2>
+            Payment & Order
+        </h2>
+
+        <p>
+            Send your payment, then enter your
+            transaction number and Roblox username.
+        </p>
+
+
+        <!-- SELECTED PRODUCT -->
+
+        <div
+            class="payment selected"
+            id="selectedProduct"
+        >
+
+            <strong>
+                Selected Product
+            </strong>
+
+            <div class="payment-number">
+                None selected
+            </div>
+
+        </div>
+
+
+        <!-- GCASH -->
+
+        <div class="payment">
+
+            <strong class="gcash">
+                💙 GCASH
+            </strong>
+
+            <div class="payment-number">
+                09937864451
+            </div>
+
+        </div>
+
+
+        <!-- MAYA -->
+
+        <div class="payment">
+
+            <strong class="paymaya">
+                💚 MAYA
+            </strong>
+
+            <div class="payment-number">
+                Add your Maya number here
+            </div>
+
+        </div>
+
+
+        <!-- TRANSACTION -->
+
+        <label for="transaction">
+            GCash Transaction Code
+        </label>
+
+        <input
+            type="text"
+            id="transaction"
+            placeholder="Enter your transaction code..."
+        >
+
+
+        <!-- USERNAME -->
+
+        <label for="username">
+            Roblox Username
+        </label>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Put your Roblox username here..."
+        >
+
+
+        <!-- SUBMIT -->
+
+        <button
+            class="submit"
+            onclick="submitOrder()"
+        >
+            SUBMIT ORDER
+        </button>
+
+
+        <!-- CLOSE -->
+
+        <button
+            class="close"
+            onclick="closePayment()"
+        >
+            CLOSE
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Robux Store — Demo Website
+
+</footer>
+
+
+<script>
+
+/* SELECT PRODUCT */
+
+function selectProduct(product) {
+
+    document
+        .getElementById("selectedProduct")
+        .querySelector(".payment-number")
+        .innerText = product;
+
+    showPayment();
+}
+
+
+/* SHOW PAYMENT */
+
+function showPayment() {
+
+    document
+        .getElementById("paymentModal")
+        .classList.add("active");
+}
+
+
+/* CLOSE PAYMENT */
+
+function closePayment() {
+
+    document
+        .getElementById("paymentModal")
+        .classList.remove("active");
+}
+
+
+/* SUBMIT ORDER */
+
+function submitOrder() {
+
+    const transaction =
+        document
+        .getElementById("transaction")
+        .value
+        .trim();
+
+
+    const username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+
+    const product =
+        document
+        .getElementById("selectedProduct")
+        .querySelector(".payment-number")
+        .innerText;
+
+
+    /* USERNAME CHECK */
+
+    if (username === "") {
+
+        showPopup(
+            "⚠️ Missing Username",
+            "Please enter your Roblox username before submitting your order."
+        );
+
+        return;
+    }
+
+
+    /* TRANSACTION CHECK */
+
+    if (transaction === "") {
+
+        showPopup(
+            "⚠️ Missing Transaction Code",
+            "Please enter your GCash transaction code."
+        );
+
+        return;
+    }
+
+
+    /*
+        DEMO INVALID CODES
+    */
+
+    const invalidCodes = [
+        "123456",
+        "000000",
+        "TEST",
+        "WRONG",
+        "INVALID"
+    ];
+
+
+    if (
+        invalidCodes.includes(
+            transaction.toUpperCase()
+        )
+    ) {
+
+        showPopup(
+
+            "❌ Wrong Transaction Code",
+
+            "The GCash transaction code could not be verified.<br><br>" +
+
+            "Please check your transaction code and try again."
+
+        );
+
+        return;
+    }
+
+
+    /* SUCCESS */
+
+    showPopup(
+
+        "✅ Order Submitted",
+
+        "Your order has been submitted for verification.<br><br>" +
+
+        "Please allow approximately " +
+
+        "<b>1–2 hours</b> for processing.<br><br>" +
+
+        "Roblox Username:<br>" +
+
+        "<b>" +
+        escapeHTML(username) +
+        "</b><br><br>" +
+
+        "Package:<br>" +
+
+        "<b>" +
+        escapeHTML(product) +
+        "</b>"
+
+    );
+
+
+    console.log(
+        "Product:",
+        product
+    );
+
+    console.log(
+        "Transaction:",
